@@ -2,6 +2,7 @@ package com.exemplo.primeira_api.controller;
 
 import com.exemplo.primeira_api.model.PessoaModel;
 import com.exemplo.primeira_api.service.PessoaService;
+import com.exemplo.primeira_api.dto.MensagemRespostaDto;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,14 +19,13 @@ public class TesteController {
     PessoaService pessoaService = new PessoaService();
 
     @GetMapping("/teste")
-    public String digaOla(){
-        return "Olá, mundo!";
+    public MensagemRespostaDto digaOla(){
+        return new MensagemRespostaDto("Olá, mundo!");
     }
 
     @GetMapping("/pessoas/nome/{id}")
-    public String getNomeOfPessoaById(@PathVariable Integer id){
-        String nomeObtido = pessoaService.getNomeById(id);
-        return nomeObtido;
+    public MensagemRespostaDto getNomeOfPessoaById(@PathVariable Integer id){
+        return new MensagemRespostaDto(pessoaService.getNomeById(id));
     }
 
     @GetMapping("/pessoas/{id}")
@@ -35,21 +35,18 @@ public class TesteController {
     }
 
     @PostMapping("/pessoas")
-    public String NewPessoa(@RequestBody PessoaModel pessoa){
-        String resultado = pessoaService.insertPessoa(pessoa);
-        return resultado;
+    public MensagemRespostaDto NewPessoa(@RequestBody PessoaModel pessoa){
+        return new MensagemRespostaDto(pessoaService.insertPessoa(pessoa));
     }
 
     @DeleteMapping("/pessoas/{id}")
-    public String DeletePessoa(@PathVariable Integer id){
-        String resultado = pessoaService.deletePessoaById(id);
-        return resultado;
+    public MensagemRespostaDto DeletePessoa(@PathVariable Integer id){
+        return new MensagemRespostaDto(pessoaService.deletePessoaById(id));
     }
 
     @PutMapping("/pessoas/{id}")
-    public String ModifyPessoaById(@PathVariable Integer id, @RequestBody PessoaModel pessoa){
-        String resultado = pessoaService.modifyPessoaById(id, pessoa);
-        return resultado;
+    public MensagemRespostaDto ModifyPessoaById(@PathVariable Integer id, @RequestBody PessoaModel pessoa){
+        return new MensagemRespostaDto(pessoaService.modifyPessoaById(id, pessoa));
     }
 
 }
