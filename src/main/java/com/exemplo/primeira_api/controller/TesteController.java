@@ -2,7 +2,9 @@ package com.exemplo.primeira_api.controller;
 
 import com.exemplo.primeira_api.model.PessoaModel;
 import com.exemplo.primeira_api.service.PessoaService;
+
 import com.exemplo.primeira_api.dto.MensagemRespostaDto;
+import com.exemplo.primeira_api.dto.PessoaRequestDto;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +37,7 @@ public class TesteController {
     }
 
     @PostMapping("/pessoas")
-    public MensagemRespostaDto NewPessoa(@RequestBody PessoaModel pessoa){
+    public MensagemRespostaDto NewPessoa(@RequestBody PessoaRequestDto pessoa){
         return new MensagemRespostaDto(pessoaService.insertPessoa(pessoa));
     }
 
@@ -45,7 +47,7 @@ public class TesteController {
     }
 
     @PutMapping("/pessoas/{id}")
-    public MensagemRespostaDto ModifyPessoaById(@PathVariable Integer id, @RequestBody PessoaModel pessoa){
+    public MensagemRespostaDto ModifyPessoaById(@PathVariable Integer id, @RequestBody PessoaRequestDto pessoa){
         return new MensagemRespostaDto(pessoaService.modifyPessoaById(id, pessoa));
     }
 

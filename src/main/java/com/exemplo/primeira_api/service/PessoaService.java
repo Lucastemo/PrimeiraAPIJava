@@ -2,6 +2,8 @@ package com.exemplo.primeira_api.service;
 
 import com.exemplo.primeira_api.model.PessoaModel;
 
+import com.exemplo.primeira_api.dto.PessoaRequestDto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,9 +41,10 @@ public class PessoaService {
         return(new PessoaModel(-1, "Not Found", -1));
     }
 
-    public String insertPessoa(PessoaModel pessoa){
-        pessoa.setId(pessoas.get(pessoas.size()-1).getId() + 1);
-        pessoas.add(pessoa);
+    public String insertPessoa(PessoaRequestDto pessoa){
+        int novoId = pessoas.get(pessoas.size()-1).getId() + 1; // Faz o novo id com base no último registro da lista
+        PessoaModel novaPessoa = new PessoaModel(novoId, pessoa.getNome(), pessoa.getIdade());
+        pessoas.add(novaPessoa);
         return "Pessoa Adicionada com Sucesso!";
     }
 
@@ -55,11 +58,11 @@ public class PessoaService {
         return "Pessoa Não Encontrada";
     }
 
-    public String modifyPessoaById(int id, PessoaModel novaPessoa){
+    public String modifyPessoaById(int id, PessoaRequestDto novaPessoaRequest){
         for(PessoaModel pessoa : pessoas){
             if(pessoa.getId() == id){
                 int pessoaIndex = pessoas.indexOf(pessoa);
-                novaPessoa.setId(id);
+                PessoaModel novaPessoa = new PessoaModel(id, novaPessoaRequest.getNome(), novaPessoaRequest.getIdade());
                 pessoas.set(pessoaIndex, novaPessoa);
                 return "Pessoa Modificada com Sucesso!";
             }
