@@ -1,4 +1,7 @@
-package com.exemplo.primeira_api;
+package com.exemplo.primeira_api.controller;
+
+import com.exemplo.primeira_api.model.PessoaModel;
+import com.exemplo.primeira_api.service.PessoaService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

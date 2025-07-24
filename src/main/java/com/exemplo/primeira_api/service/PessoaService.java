@@ -1,4 +1,6 @@
-package com.exemplo.primeira_api;
+package com.exemplo.primeira_api.service;
+
+import com.exemplo.primeira_api.model.PessoaModel;
 
 import java.util.ArrayList;
 import java.util.List;

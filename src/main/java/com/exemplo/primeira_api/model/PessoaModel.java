@@ -1,4 +1,4 @@
-package com.exemplo.primeira_api;
+package com.exemplo.primeira_api.model;
 
 public class PessoaModel {
 
