@@ -1,8 +1,15 @@
 package com.exemplo.primeira_api.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 public class PessoaRequestDto {
 
+    @NotBlank(message = "O campo nome não pode ser vazio")
     String nome;
+
+    @NotNull(message = "O campo idade não pode ser vazio") @Positive(message = "O campo idade deve conter um número positivo")
     Integer idade;
 
     public PessoaRequestDto(String nome, Integer idade) {
