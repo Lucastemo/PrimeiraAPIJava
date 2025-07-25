@@ -1,7 +1,7 @@
 package com.exemplo.primeira_api.dto;
 
 public class ErroRespostaDto {
-    String error;
+    private String error;
 
     public ErroRespostaDto(String error) {
         this.error = error;

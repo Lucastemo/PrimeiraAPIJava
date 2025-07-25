@@ -7,10 +7,10 @@ import jakarta.validation.constraints.Positive;
 public class PessoaRequestDto {
 
     @NotBlank(message = "O campo nome não pode ser vazio")
-    String nome;
+    private String nome;
 
     @NotNull(message = "O campo idade não pode ser vazio") @Positive(message = "O campo idade deve conter um número positivo")
-    Integer idade;
+    private Integer idade;
 
     public PessoaRequestDto(String nome, Integer idade) {
         this.nome = nome;

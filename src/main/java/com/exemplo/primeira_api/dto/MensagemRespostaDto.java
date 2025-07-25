@@ -1,7 +1,7 @@
 package com.exemplo.primeira_api.dto;
 
 public class MensagemRespostaDto {
-    String mensagem;
+    private String mensagem;
 
     public MensagemRespostaDto(String mensagem) {
         this.mensagem = mensagem;
