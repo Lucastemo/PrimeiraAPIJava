@@ -4,6 +4,8 @@ import com.exemplo.primeira_api.model.PessoaModel;
 
 import com.exemplo.primeira_api.dto.PessoaRequestDto;
 
+import com.exemplo.primeira_api.exception.PessoaNaoEncontradaException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class PessoaService {
                 return pessoa.getNome();
             }
         }
-        return "Not Found";
+        throw new PessoaNaoEncontradaException("Falha ao tentar buscar nome de pessoa por ID", id);
     }
 
     public PessoaModel getPessoaById(int id){
@@ -38,7 +40,7 @@ public class PessoaService {
                 return pessoa;
             }
         }
-        return(new PessoaModel(-1, "Not Found", -1));
+        throw new PessoaNaoEncontradaException("Falha ao tentar buscar pessoa por ID", id);
     }
 
     public String insertPessoa(PessoaRequestDto pessoa){
@@ -48,14 +50,12 @@ public class PessoaService {
         return "Pessoa Adicionada com Sucesso!";
     }
 
-    public String deletePessoaById(int id){
+    public void deletePessoaById(int id){
         for(PessoaModel pessoa : pessoas){
             if(pessoa.getId() == id){
                 pessoas.remove(pessoa);
-                return "Pessoa Removida com Sucesso!";
             }
         }
-        return "Pessoa Não Encontrada";
     }
 
     public String modifyPessoaById(int id, PessoaRequestDto novaPessoaRequest){
@@ -67,6 +67,6 @@ public class PessoaService {
                 return "Pessoa Modificada com Sucesso!";
             }
         }
-        return "Pessoa Não Encontrada";
+        throw new PessoaNaoEncontradaException("Falha ao tentar modificar pessoa por ID", id);
     }
 }
