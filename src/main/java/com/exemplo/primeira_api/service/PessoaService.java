@@ -54,11 +54,7 @@ public class PessoaService {
     }
 
     public void deletePessoaById(int id){
-        for(PessoaModel pessoa : pessoas){
-            if(pessoa.getId() == id){
-                pessoas.remove(pessoa);
-            }
-        }
+        pessoas.removeIf(pessoa -> pessoa.getId() == id);
     }
 
     public String modifyPessoaById(int id, PessoaRequestDto novaPessoaRequest){
