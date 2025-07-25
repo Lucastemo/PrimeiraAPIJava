@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 public class TesteController {
 
-    PessoaService pessoaService = new PessoaService();
+    PessoaService pessoaService;
+
+    @Autowired
+    public TesteController(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
+    }
 
     @GetMapping("/teste")
     public ResponseEntity<?> digaOla(){

@@ -6,9 +6,12 @@ import com.exemplo.primeira_api.dto.PessoaRequestDto;
 
 import com.exemplo.primeira_api.exception.PessoaNaoEncontradaException;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class PessoaService {
 
     List<PessoaModel> pessoas = new ArrayList<>();
